@@ -1,0 +1,36 @@
+import type { TeamSeed } from "./TeamSeed";
+
+export const TEAM_SEEDS: readonly TeamSeed[] = [
+  { id: "atl", city: "Atlanta", name: "Aviators", abbreviation: "atl" },
+  { id: "bos", city: "Boston", name: "Harbors", abbreviation: "bos" },
+  { id: "bkn", city: "Brooklyn", name: "Foundry", abbreviation: "bkn" },
+  { id: "cha", city: "Charlotte", name: "Crown", abbreviation: "cha" },
+  { id: "chi", city: "Chicago", name: "Union", abbreviation: "chi" },
+  { id: "cle", city: "Cleveland", name: "Forge", abbreviation: "cle" },
+  { id: "dal", city: "Dallas", name: "Outriders", abbreviation: "dal" },
+  { id: "den", city: "Denver", name: "Summit", abbreviation: "den" },
+  { id: "det", city: "Detroit", name: "Assembly", abbreviation: "det" },
+  { id: "gsw", city: "San Francisco", name: "Tides", abbreviation: "gsw" },
+
+  { id: "hou", city: "Houston", name: "Comets", abbreviation: "hou" },
+  { id: "ind", city: "Indianapolis", name: "Circuit", abbreviation: "ind" },
+  { id: "lac", city: "Los Angeles", name: "Altitude", abbreviation: "lac" },
+  { id: "lal", city: "Los Angeles", name: "Palisades", abbreviation: "lal" },
+  { id: "mem", city: "Memphis", name: "Bluff", abbreviation: "mem" },
+  { id: "mia", city: "Miami", name: "Current", abbreviation: "mia" },
+  { id: "mil", city: "Milwaukee", name: "Northshore", abbreviation: "mil" },
+  { id: "min", city: "Minneapolis", name: "Lakes", abbreviation: "min" },
+  { id: "nop", city: "New Orleans", name: "Brass", abbreviation: "nop" },
+  { id: "nyk", city: "New York", name: "Empire", abbreviation: "nyk" },
+
+  { id: "okc", city: "Oklahoma City", name: "Frontier", abbreviation: "okc" },
+  { id: "orl", city: "Orlando", name: "Orbit", abbreviation: "orl" },
+  { id: "phi", city: "Philadelphia", name: "Keystone", abbreviation: "phi" },
+  { id: "phx", city: "Phoenix", name: "Sirocco", abbreviation: "phx" },
+  { id: "por", city: "Portland", name: "Timberline", abbreviation: "por" },
+  { id: "sac", city: "Sacramento", name: "Capitol", abbreviation: "sac" },
+  { id: "sas", city: "San Antonio", name: "Mission", abbreviation: "sas" },
+  { id: "tor", city: "Toronto", name: "Crossroads", abbreviation: "tor" },
+  { id: "uta", city: "Salt Lake City", name: "Ascent", abbreviation: "uta" },
+  { id: "was", city: "Washington", name: "Federal", abbreviation: "was" },
+] as const;

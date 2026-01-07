@@ -1,9 +1,8 @@
-import { Player } from "../models/Player";
 import type { PlayerSeed } from "./PlayerSeed";
 import type { PlayerAttributes } from "./PlayerAttributes"
 
-export function generatePlayers(count: number): Player[] {
-  const players: Player[] = []
+export function generatePlayerSeeds(count: number): PlayerSeed[] {
+  const seeds: PlayerSeed[] = []
   for (let i = 0; i < count; i++) {
     const attributes: PlayerAttributes = {
       offense: Math.floor(Math.random() * 100) + 1,
@@ -14,13 +13,10 @@ export function generatePlayers(count: number): Player[] {
     const height = Math.floor(Math.random() * 30) + 60;
 
     const seed: PlayerSeed = {
-      id: id,
-      name: name,
-      height: height, 
-      attributes: attributes
+      id, name, height, attributes
     }
 
-    players.push(Player.fromSeed(seed));
+    seeds.push(seed);
   }
-  return players;
+  return seeds;
 }

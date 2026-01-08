@@ -24,6 +24,7 @@ export class Team {
     return new Team({
       id: seed.id,
       name: seed.name,
+      abbreviation: seed.abbreviation,
       roster: []
     })
   }

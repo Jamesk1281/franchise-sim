@@ -21,7 +21,7 @@ export default function TeamPage({ team, onBack }: TeamPageProps) {
         <ul>
           {team.roster.map((p) => (
             <li key={p.id}>
-              {p.name}
+              {p.firstName} {p.lastName}
             </li>
           ))}
         </ul>

@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { createLeague } from "./factories/createLeague";
+import { SimContext } from "./sim/SimContext";
 import TeamsPage from "./pages/TeamsPage";
 import TeamPage from "./pages/TeamPage";
 
 export default function App() {
-  const [league] = useState(() => createLeague());
+  const [sim] = useState(() => new SimContext());
+  const league = sim.league;
+
   const [selectedTeamId, setSelectedTeamId] = useState<string | null>(null);
 
   if (selectedTeamId) {

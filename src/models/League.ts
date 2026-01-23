@@ -1,16 +1,16 @@
+import type { Schedule } from "./Schedule";
 import { Team } from "./Team";
 
 export class League {
   teams: Team[];
 
-  // Number of games in a season
-  readonly seasonLength: number;
+  schedule: Schedule
 
   constructor(params: {
     teams: Team[];
-    seasonLength: number;
+    schedule: Schedule;
   }) {
     this.teams = params.teams;
-    this.seasonLength = params.seasonLength;
+    this.schedule = params.schedule;
   }
 }

@@ -5,14 +5,18 @@ import type { PlayerSeed } from "../data/PlayerSeed"
 import type { TeamSeed } from "../data/TeamSeed"
 import { TEAM_SEEDS } from "../data/teams"
 import { generatePlayerSeeds } from "../data/players"
+import { createSchedule } from "./createSchedule"
 
 export function createLeague(): League { 
   const seeds = generatePlayerSeeds(300)
   const players = initializePlayers(seeds); 
-  const teams = initializeTeams(TEAM_SEEDS, players); 
+  const teams = initializeTeams(TEAM_SEEDS, players);
+
+  const teamIds = teams.map((t) => t.id)
+  const schedule = createSchedule(teamIds, (teamIds.length - 1) * 2) 
   return new League({
     teams: teams, 
-    seasonLength: 82}) 
+    schedule: schedule}) 
 } 
 
 function initializePlayers(seeds: readonly PlayerSeed[]): Player[] {

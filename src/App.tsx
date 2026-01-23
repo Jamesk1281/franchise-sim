@@ -14,7 +14,7 @@ export default function App() {
 
     if (!team) return <TeamsPage league={league} onSelectTeam={setSelectedTeamId} />;
 
-    return <TeamPage team={team} onBack={() => setSelectedTeamId(null)} />;
+    return <TeamPage team={team} league={league} onBack={() => setSelectedTeamId(null)} />;
   }
 
   return <TeamsPage league={league} onSelectTeam={setSelectedTeamId} />;

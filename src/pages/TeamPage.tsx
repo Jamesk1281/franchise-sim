@@ -11,13 +11,10 @@ type TeamPageProps = {
 export default function TeamPage({ team, league, onBack }: TeamPageProps) {
   const getTeamById = (id: string) => league.teams.find((t) => t.id === id);
 
-  // Flatten schedule.days into a single list of this team's games
-  // while keeping the dayIndex info.
   const teamGames: Game[] =
     league.schedule.days
       .flat()
       .filter((g) => g.homeTeamID === team.id || g.awayTeamID === team.id)
-      // sort by dayIndex (in case your flat() order ever changes)
       .slice()
       .sort((a, b) => a.dayIndex - b.dayIndex);
 
@@ -28,7 +25,9 @@ export default function TeamPage({ team, league, onBack }: TeamPageProps) {
       <h1>
         {team.name} ({team.abbreviation})
       </h1>
-
+      <p>
+        Record: {team.record.wins}-{team.record.losses}
+      </p>
       <h2>Roster</h2>
       {team.roster.length === 0 ? (
         <p>No players yet.</p>

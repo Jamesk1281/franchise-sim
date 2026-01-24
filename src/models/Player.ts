@@ -1,3 +1,4 @@
+import type { PlayerAttributes } from "../data/PlayerAttributes";
 import type { PlayerSeed} from "../data/PlayerSeed";
 
 export type Position = "PG" | "SG" | "SF" | "PF" | "C"
@@ -10,21 +11,18 @@ export class Player {
 
   position?: Position;
 
-  offense: number;
-  defense: number;
+  attributes: PlayerAttributes;
 
   constructor(params: {
     id: string;
     firstName: string;
     lastName: string;
-    offense: number;
-    defense: number;
+    attributes: PlayerAttributes
   }) {
     this.id = params.id;
     this.firstName = params.firstName;
     this.lastName = params.lastName
-    this.offense = params.offense;
-    this.defense = params.defense;
+    this.attributes = params.attributes;
   }
 
   static fromSeed(seed: PlayerSeed): Player {
@@ -32,8 +30,7 @@ export class Player {
       id: seed.id,
       firstName: seed.firstName,
       lastName: seed.lastName,
-      offense: seed.attributes.offense,
-      defense: seed.attributes.defense,
+      attributes: seed.attributes
     });
   }
 }

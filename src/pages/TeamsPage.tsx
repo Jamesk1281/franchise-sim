@@ -3,9 +3,10 @@ import { League } from "../models/League";
 type TeamsPageProps = {
   league: League;
   onSelectTeam: (teamId: string) => void;
+  onSimulateDay: () => void;
 };
 
-export default function TeamsPage({ league, onSelectTeam }: TeamsPageProps) {
+export default function TeamsPage({ league, onSelectTeam, onSimulateDay }: TeamsPageProps) {
   const standings = league.teams
     .slice()
     .sort((a, b) => {
@@ -16,6 +17,8 @@ export default function TeamsPage({ league, onSelectTeam }: TeamsPageProps) {
   return (
     <div>
       <h1>Teams</h1>
+
+      <button onClick={onSimulateDay}>Sim Day</button>
 
       <h2>Standings</h2>
       {standings.length === 0 ? (
@@ -45,4 +48,3 @@ export default function TeamsPage({ league, onSelectTeam }: TeamsPageProps) {
     </div>
   );
 }
-

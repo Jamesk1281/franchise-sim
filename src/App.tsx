@@ -9,13 +9,41 @@ export default function App() {
 
   const [selectedTeamId, setSelectedTeamId] = useState<string | null>(null);
 
+  const [, setTick] = useState(0);
+  const rerender = () => setTick((t) => t + 1);
+
+  const handleSimDay = () => {
+    sim.simulateDay();
+    rerender();
+  };
+
   if (selectedTeamId) {
     const team = league.teams.find((t) => t.id === selectedTeamId);
 
-    if (!team) return <TeamsPage league={league} onSelectTeam={setSelectedTeamId} />;
+    if (!team)
+      return (
+        <TeamsPage
+          league={league}
+          onSelectTeam={setSelectedTeamId}
+          onSimulateDay={handleSimDay}
+        />
+      );
 
-    return <TeamPage team={team} league={league} onBack={() => setSelectedTeamId(null)} />;
+    return (
+      <TeamPage
+        team={team}
+        league={league}
+        onBack={() => setSelectedTeamId(null)}
+      />
+    );
   }
 
-  return <TeamsPage league={league} onSelectTeam={setSelectedTeamId} />;
+  return (
+    <TeamsPage
+      league={league}
+      onSelectTeam={setSelectedTeamId}
+      onSimulateDay={handleSimDay}
+    />
+  );
 }
+

@@ -24,3 +24,7 @@ export function makeSimDate(
     dayIndex,
   });
 }
+
+export function advanceSimDate(date: SimDate): SimDate {
+  return makeSimDate(date.seasonYear, date.dayIndex + 1);
+}

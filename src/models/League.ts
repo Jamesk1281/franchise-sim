@@ -5,18 +5,18 @@ import { Team } from "./Team";
 export class League {
   teams: Team[];
 
-  schedule: Schedule
+  regularSeasonSchedule: Schedule
 
   constructor(params: {
     teams: Team[];
-    schedule: Schedule;
+    regularSeasonSchedule: Schedule;
   }) {
     this.teams = params.teams;
-    this.schedule = params.schedule;
+    this.regularSeasonSchedule = params.regularSeasonSchedule;
   }
 
   simulateDay(dayIndex: number): void {
-    const games = this.schedule.days[dayIndex] ?? [];
+    const games = this.regularSeasonSchedule.days[dayIndex] ?? [];
     for (let i = 0; i < games.length; i++) {
       const game = games[i];
   

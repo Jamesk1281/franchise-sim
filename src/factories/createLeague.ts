@@ -16,7 +16,7 @@ export function createLeague(): League {
   const schedule = createSchedule(teamIds, (teamIds.length - 1) * 2) 
   return new League({
     teams: teams, 
-    schedule: schedule}) 
+    regularSeasonSchedule: schedule}) 
 } 
 
 function initializePlayers(seeds: readonly PlayerSeed[]): Player[] {

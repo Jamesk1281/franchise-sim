@@ -1,6 +1,5 @@
 import type { League } from "../models/League";
 import { Team } from "../models/Team";
-import type { Game } from "../models/Game"; // adjust import path if needed
 
 type TeamPageProps = {
   team: Team;
@@ -11,12 +10,13 @@ type TeamPageProps = {
 export default function TeamPage({ team, league, onBack }: TeamPageProps) {
   const getTeamById = (id: string) => league.teams.find((t) => t.id === id);
 
-  const teamGames: Game[] =
-    league.schedule.days
-      .flat()
-      .filter((g) => g.homeTeamID === team.id || g.awayTeamID === team.id)
-      .slice()
-      .sort((a, b) => a.dayIndex - b.dayIndex);
+  const teamGames = league.regularSeasonSchedule.days
+    .flatMap((gamesOnDay, dayIndex) =>
+      gamesOnDay
+        .filter((g) => g.homeTeamID === team.id || g.awayTeamID === team.id)
+        .map((g) => ({ dayIndex, game: g }))
+    )
+    .sort((a, b) => a.dayIndex - b.dayIndex);
 
   return (
     <div>
@@ -28,6 +28,7 @@ export default function TeamPage({ team, league, onBack }: TeamPageProps) {
       <p>
         Record: {team.record.wins}-{team.record.losses}
       </p>
+
       <h2>Roster</h2>
       {team.roster.length === 0 ? (
         <p>No players yet.</p>
@@ -46,16 +47,18 @@ export default function TeamPage({ team, league, onBack }: TeamPageProps) {
         <p>No games scheduled yet.</p>
       ) : (
         <ul>
-          {teamGames.map((g) => {
+          {teamGames.map(({ dayIndex, game: g }) => {
             const isHome = g.homeTeamID === team.id;
             const opponentId = isHome ? g.awayTeamID : g.homeTeamID;
             const opponent = getTeamById(opponentId);
 
             return (
               <li key={g.id}>
-                <strong>Day {g.dayIndex + 1}:</strong>{" "}
+                <strong>Day {dayIndex + 1}:</strong>{" "}
                 {isHome ? "vs" : "@"}{" "}
-                {opponent ? `${opponent.name} (${opponent.abbreviation})` : "Unknown Team"}
+                {opponent
+                  ? `${opponent.name} (${opponent.abbreviation})`
+                  : "Unknown Team"}
                 {g.result ? " — Final" : " — Scheduled"}
               </li>
             );

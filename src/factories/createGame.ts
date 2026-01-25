@@ -7,7 +7,6 @@ export function createGame(
 ): Game {
   return {
     id: `${dayIndex}:${homeTeamID}:${awayTeamID}`,
-    dayIndex,
     homeTeamID,
     awayTeamID,
   };

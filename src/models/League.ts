@@ -1,4 +1,5 @@
 import { simulateGame } from "../sim/simulate";
+import type { Playoffs } from "./Playoffs";
 import type { Schedule } from "./Schedule";
 import { Team } from "./Team";
 
@@ -6,13 +7,16 @@ export class League {
   teams: Team[];
 
   regularSeasonSchedule: Schedule
+  playoffs: Playoffs | null
 
   constructor(params: {
     teams: Team[];
     regularSeasonSchedule: Schedule;
+    playoffs?: Playoffs | null
   }) {
     this.teams = params.teams;
     this.regularSeasonSchedule = params.regularSeasonSchedule;
+    this.playoffs = params.playoffs ?? null
   }
 
   simulateDay(dayIndex: number): void {
@@ -40,6 +44,12 @@ export class League {
         homeTeam.recordLoss();
       }
     }
+  }
+
+  getStandings(): Team[] {
+    return this.teams
+      .slice()
+      .sort((a, b) => b.record.wins - a.record.wins);
   }
   
 }

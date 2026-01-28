@@ -1,19 +1,20 @@
-import type { GameResult } from "./GameResult"
+import type { Game } from "./Game"
 
 export type Playoffs = {
   rounds: Series[][]
+  roundIndex: number
 
   championTeamID?: string
 }
 
 export type Series = {
-  higherSeedTeamID: string
-  lowerSeedTeamID: string
+  higherSeedTeamID: string;
+  lowerSeedTeamID: string;
 
-  bestOf: number
+  bestOf: number;
 
-  higherSeedWins: number
-  lowerSeedWins: number
+  higherSeedWins: number;
+  lowerSeedWins: number;
 
-  gameResults: GameResult[]
-}
+  games: Game[];
+};
